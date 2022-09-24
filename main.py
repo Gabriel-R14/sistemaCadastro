@@ -3,8 +3,8 @@ import random
 from database import cadastroEmail, cadastroName, cadastroSenha, verificaDados
 
 server = gmail.SMTP_SSL('smtp.gmail.com', 465)
-de = 'gabriel.rogado50@gmail.com'
-server.login(de, 'fgcdvedvupzanypk')
+de = 'email'
+server.login(de, 'codigo')
 
 menu = int(input('[ 1 ] Registrar\n[ 2 ] Login\n[ 3 ] Sair\n--> '))
 while menu not in (1, 2, 3):

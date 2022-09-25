@@ -11,44 +11,48 @@ def cadastroSenha(senha):
     arqPassword.write(f'{senha}\n')
 
 def verificaDados():
+    arqEmailOpen = open('email.txt', 'r')  
+    arqNameOpen = open('name.txt', 'r')
+    arqPasswordOpen = open('senha.txt', 'r')
+    mailList = arqEmailOpen.readlines()
+    for c in range(0, len(mailList)):
+        mailList[c] = mailList[c].replace('\n', '')
+    nameList = arqNameOpen.readlines()
+    for c in range(0, len(nameList)):
+        nameList[c] = nameList[c].replace('\n', '')
+    passwordList = arqPasswordOpen.readlines()
+    for c in range(0, len(passwordList)):
+        passwordList[c] = passwordList[c].replace('\n', '')
+    nameEmail = input('Digite seu nome de usuário ou endereço de email: ')
+    password = input('Digite sua senha: ')
     while True:
-        arqEmailOpen = open('email.txt', 'r')
-        arqNameOpen = open('name.txt', 'r')
-        mailList = arqEmailOpen.readlines()
-        nameList = arqNameOpen.readlines()
-        arqPasswordOpen = open('senha.txt', 'r')
-        passwordList = arqPasswordOpen.readlines()
-        nameEmail = input('Digite seu nome de usuário ou endereço de email: ')
         if nameEmail in mailList:
-            password = input('Digite sua senha: ')
             if password in passwordList:
-                for e in mailList:
-                    for p in passwordList:
-                        if mailList.index(nameEmail) == passwordList.index(password):
-                            print('Login efetuado com sucesso!')
-                            break
-                        else:
-                            print('Digite sua senha corretamente')
-            else:
-                while password not in passwordList:
-                    print('Por favor digite uma senha válida')
+                if mailList.index(nameEmail) == passwordList.index(password):
+                    print('Login efetuado com sucesso!') 
+                    break
+                else:
+                    print('Sua senha, nome de usuário ou email estão incorretos, digite-os novamente')
+                    nameEmail = input('Digite seu nome de usuário ou endereço de email: ')
                     password = input('Digite sua senha: ')
-            break
+            else:
+                print('Sua senha, nome de usuário ou email estão incorretos, digite-os novamente')
+                nameEmail = input('Digite seu nome de usuário ou endereço de email: ')
+                password = input('Digite sua senha: ')
         elif nameEmail in nameList:
-            password = input('Digite sua senha: ')
             if password in passwordList:
-                for n in nameList:
-                    for p in passwordList:
-                        if nameList.index(nameEmail) == passwordList.index(password):
-                            print('Login efetuado com sucesso!')
-                            break
-                        else:
-                            print('Digite sua senha corretamente')
-            else:
-                print('Por favor digite uma senha válida')
-                while password not in passwordList:
-                    print('Por favor digite uma senha válida')
+                if nameList.index(nameEmail) == passwordList.index(password):
+                    print('Login efetuado com sucesso!')
+                    break
+                else:
+                    print('Sua senha, nome de usuário ou email estão incorretos, digite-os novamente')
+                    nameEmail = input('Digite seu nome de usuário ou endereço de email: ')
                     password = input('Digite sua senha: ')
-            break
+            else:
+                print('Sua senha, nome de usuário ou email estão incorretos, digite-os novamente')
+                nameEmail = input('Digite seu nome de usuário ou endereço de email: ')
+                password = input('Digite sua senha: ')
         else:
-            print('Por favor digite um nome de usuário ou e-mail válido')      
+            print('Sua senha, nome de usuário ou email estão incorretos, digite-os novamente')
+            nameEmail = input('Digite seu nome de usuário ou endereço de email: ')
+            password = input('Digite sua senha: ')
